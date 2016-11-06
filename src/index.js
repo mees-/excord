@@ -2,7 +2,7 @@ import { Client } from 'discord.js'
 
 const log = require('debug')('zelon:index')
 
-export default class Zelon extends Client {
+module.exports = class Zelon extends Client {
   constructor() {
     log('create')
     super(...arguments)
@@ -10,25 +10,24 @@ export default class Zelon extends Client {
     this.middleware = []
 
     this.on('message', (message) => {
+      log(`Got message: '${ message.content }'`)
       const chain = this.middleware
         .map(current => Object.assign({}, current, { result: current.test.exec(message.content) }))
         .filter(value => value !== null)
-        .sort((a, b) => {
-          if (a.result[0].length !== b.result[0].length) {
-            return a.result[0].length - b.result[0].length
-          }
-          if (a.index > b.index) {
-            return 1
-          }
-          return -1
-        })
+
+      // push an empty function to end the chain
+      chain.push({ handler: () => log('End of chain') })
 
       let index = 0
+      log('chain', chain)
       function next() {
-        index++
-        chain[index].handler(message, next)
+        const last = index++
+        // attach regex result to message
+        message.reg = chain[last].result
+        chain[last].handler(message, next)
       }
-      chain[0].handler(message, next)
+      // start the chain
+      next()
     })
   }
 

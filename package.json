@@ -2,7 +2,7 @@
   "name": "zelon",
   "version": "0.0.1",
   "description": "An express like framework for creating discord bots",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "url": "https://github.com/mees-/zelon.git",
     "type": "git"
