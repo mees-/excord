@@ -1,6 +1,6 @@
 import pathToRegex from 'path-to-regexp'
 
-const debug = require('debug')('zelon:Router')
+const debug = require('debug')('excord:Router')
 
 export default class Router {
   constructor(pathHead = '') {

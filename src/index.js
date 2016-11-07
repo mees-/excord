@@ -4,13 +4,13 @@ import Router from './Router'
 import Request from './Request'
 import Response from './Response'
 
-const debug = require('debug')('zelon:index')
+const debug = require('debug')('excord:index')
 
 const defaultOptions = { ignoreSelf: true }
 
-module.exports = class Zelon extends Client {
+module.exports = class Excord extends Client {
   constructor(options = defaultOptions) {
-    debug('created new Zelon')
+    debug('created new excord')
     // init discord client
     super(options)
 
