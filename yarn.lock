@@ -216,6 +216,10 @@ babel-plugin-syntax-exponentiation-operator@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-exponentiation-operator/-/babel-plugin-syntax-exponentiation-operator-6.13.0.tgz#9ee7e8337290da95288201a6a57f4170317830de"
 
+babel-plugin-syntax-object-rest-spread@^6.8.0:
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
+
 babel-plugin-syntax-trailing-function-commas@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.13.0.tgz#2b84b7d53dd744f94ff1fad7669406274b23f541"
@@ -243,6 +247,13 @@ babel-plugin-transform-exponentiation-operator@^6.3.13:
   dependencies:
     babel-helper-builder-binary-assignment-operator-visitor "^6.8.0"
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
+    babel-runtime "^6.0.0"
+
+babel-plugin-transform-object-rest-spread:
+  version "6.16.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.16.0.tgz#db441d56fffc1999052fdebe2e2f25ebd28e36a9"
+  dependencies:
+    babel-plugin-syntax-object-rest-spread "^6.8.0"
     babel-runtime "^6.0.0"
 
 babel-plugin-transform-strict-mode@^6.18.0:
@@ -513,6 +524,12 @@ dateformat@^1.0.11:
     get-stdin "^4.0.1"
     meow "^3.3.0"
 
+debug:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.0.tgz#3912dc55d7167fc3af17d2b85c13f93deaedaa43"
+  dependencies:
+    ms "0.7.2"
+
 debug-fabulous@0.0.X:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/debug-fabulous/-/debug-fabulous-0.0.4.tgz#fa071c5d87484685424807421ca4b16b0b1a0763"
@@ -692,9 +709,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-mees@^1.1.17:
-  version "1.1.18"
-  resolved "https://registry.yarnpkg.com/eslint-config-mees/-/eslint-config-mees-1.1.18.tgz#853dd14458afc87b54a72927e113b04cf55d6c86"
+eslint-config-mees:
+  version "1.1.19"
+  resolved "https://registry.yarnpkg.com/eslint-config-mees/-/eslint-config-mees-1.1.19.tgz#ef2301c659a443ffa03b8b5a7bce7d9725a0c3d8"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -1805,6 +1822,10 @@ ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
+ms@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
+
 multipipe@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/multipipe/-/multipipe-0.1.2.tgz#2a8f2ddf70eed564dff2d57f1e1a137d9f05078b"
@@ -1959,6 +1980,12 @@ path-root@^0.1.1:
   resolved "https://registry.yarnpkg.com/path-root/-/path-root-0.1.1.tgz#9a4a6814cac1c0cd73360a95f32083c8ea4745b7"
   dependencies:
     path-root-regex "^0.1.0"
+
+path-to-regexp:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.6.0.tgz#4c59cfeab5e360a2657b180730a4bb4582ecec5b"
+  dependencies:
+    isarray "0.0.1"
 
 path-type@^1.0.0:
   version "1.1.0"

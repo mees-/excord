@@ -1,45 +1,49 @@
+require('source-map-support').install()
 import { Client } from 'discord.js'
+import Router from './Router'
+import Request from './Request'
+import Response from './Response'
 
-const log = require('debug')('zelon:index')
+const debug = require('debug')('zelon:index')
+
+const defaultOptions = { ignoreSelf: true }
 
 module.exports = class Zelon extends Client {
-  constructor() {
-    log('create')
-    super(...arguments)
+  constructor(options = defaultOptions) {
+    debug('created new Zelon')
+    // init discord client
+    super(options)
 
-    this.middleware = []
+    // use this to not allow middleware to access the send method on responses
+    const sendSymbol = Symbol()
 
-    this.on('message', (message) => {
-      log(`Got message: '${ message.content }'`)
-      const chain = this.middleware
-        .map(current => Object.assign({}, current, { result: current.test.exec(message.content) }))
-        .filter(value => value !== null)
-
-      // push an empty function to end the chain
-      chain.push({ handler: () => log('End of chain') })
-
-      let index = 0
-      log('chain', chain)
-      function next() {
-        const last = index++
-        // attach regex result to message
-        message.reg = chain[last].result
-        chain[last].handler(message, next)
-      }
-      // start the chain
+    // create router
+    this.router = new Router()
+    this.router.use((req, res, next) => {
+      if (req.author.equals(this.user) && options.ignoreSelf) return
       next()
+      if (typeof res.staged === 'string' && res.staged !== '') res[sendSymbol]()
+    })
+
+    // turn message into req/res pair and pass them to the router
+    this.on('message', (message) => {
+      debug('message')
+      const req = new Request(message)
+      const res = new Response(message, sendSymbol)
+
+      this.router.handle(req, res)
     })
   }
 
-  use(path, handler = path instanceof Function ? path : undefined) {
-    const middleware = { handler, index: this.middleware.length }
-    if (typeof path === 'string') {
-      middleware.test = new RegExp(`^${ path }`) // add the ^ character to match start of string
-    } else if (path instanceof RegExp) {
-      middleware.test = path
-    } else { // invalid/no path given
-      middleware.test = /[\s\S]*/ // match all strings
-    }
-    this.middleware.push(middleware)
+  use() {
+    debug('new use middleware')
+    this.router.use(...arguments)
+  }
+
+  hit() {
+    debug('new hit middleware')
+    this.router.hit(...arguments)
   }
 }
+
+exports.Router = Router

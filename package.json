@@ -2,7 +2,7 @@
   "name": "zelon",
   "version": "0.0.1",
   "description": "An express like framework for creating discord bots",
-  "main": "lib/index.js",
+  "main": "libSrc/index.js",
   "repository": {
     "url": "https://github.com/mees-/zelon.git",
     "type": "git"
@@ -10,16 +10,19 @@
   "author": "Mees van Dijk",
   "license": "MIT",
   "dependencies": {
-    "discord.js": "^10.0.1"
+    "debug": "^2.3.0",
+    "discord.js": "^10.0.1",
+    "path-to-regexp": "^1.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-es2017": "^6.16.0",
     "chai": "^3.5.0",
     "eslint": "^3.9.1",
-    "eslint-config-mees": "^1.1.17",
+    "eslint-config-mees": "^1.1.19",
     "eslint-plugin-import": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
