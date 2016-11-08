@@ -1,4 +1,3 @@
-/* @flow */
 import gulp from 'gulp'
 import sourceMap from 'gulp-sourcemaps'
 import eslint from 'gulp-eslint'
@@ -7,42 +6,65 @@ import mocha from 'gulp-mocha'
 import del from 'del'
 
 const path = {
-  allJs: '{src,test}/**/*.js',
   src: 'src/**/*.js',
   test: 'test/**/*.js',
-  lib: 'lib/',
-  srcDest: 'lib/src/',
-  testDest: 'lib/test/**/*.js'
+  srcDest: 'libSrc',
+  testDest: 'libTest',
+  builtTest: 'libTest/**/*.js'
 }
 
-gulp.task('clean', () =>
-  del(path.lib)
+gulp.task('cleanSrc', () =>
+  del(path.srcDest)
 )
 
-gulp.task('build', ['lint', 'clean'], () =>
-  gulp.src([path.allJs])
+gulp.task('cleanTest', () =>
+  del(path.testDest)
+)
+
+gulp.task('buildSrc', ['lintSrc', 'cleanSrc'], () =>
+  gulp.src(path.src)
     .pipe(sourceMap.init())
     .pipe(babel())
     .pipe(sourceMap.write('.'))
-    .pipe(gulp.dest(path.lib))
+    .pipe(gulp.dest(path.srcDest))
 )
 
-gulp.task('lint', () =>
-  gulp.src([path.allJs])
+gulp.task('buildTest', ['lintTest', 'cleanTest', 'buildSrc'], () =>
+  gulp.src(path.test)
+  .pipe(sourceMap.init())
+  .pipe(babel())
+  .pipe(sourceMap.write('.'))
+  .pipe(gulp.dest(path.testDest))
+)
+
+gulp.task('lintSrc', () =>
+  gulp.src(path.src)
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failAfterError())
 )
 
-gulp.task('test', ['build'], () =>
-  gulp.src(path.testDest)
+gulp.task('lintTest', () =>
+  gulp.src(path.test)
+  .pipe(eslint())
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError())
+)
+
+gulp.task('test', ['buildTest'], () =>
+  gulp.src(path.builtTest)
   .pipe(mocha())
 )
 
 gulp.task('main', ['test'])
 
 gulp.task('watch', () => {
-  gulp.watch(path.allJs, ['main'])
+  gulp.watch(path.src, ['main'])
+  gulp.watch(path.test, ['main'])
 })
 
 gulp.task('default', ['watch', 'main'])
+gulp.task('buildWatch', ['buildTest'], () => {
+  gulp.watch(path.src, ['buildTest'])
+  gulp.watch(path.test, ['buildTest'])
+})
