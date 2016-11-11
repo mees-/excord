@@ -1,8 +1,9 @@
 parser: babel-eslint
 extends:
   - mees
-plugins:
-  - import
 env:
   node: true
   es6: true
+rules:
+  no-param-reassign:
+    - off
