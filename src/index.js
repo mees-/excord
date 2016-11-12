@@ -10,9 +10,7 @@ module.exports = class Excord extends Client {
     this.on('message', (message) => {
       const req = new Request(message)
       const res = new Response(message)
-      this.router.handle(req, res, () => {
-        // end of chain
-      })
+      this.router.handle(req, res)
     })
   }
 

@@ -56,6 +56,12 @@ module.exports = class Router {
       if (typeof route === 'string') req.route = route
 
       let current = chain.shift()
+      if (!current) {
+        // chain is empty
+        try {
+          endOfRouter()
+        } catch (e) {}
+      }
       // loop to next machting middleware
       while (!current.match(req.route).match) {
         current = chain.shift()
