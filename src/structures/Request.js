@@ -1,13 +1,9 @@
-module.exports = class Request {
-  constructor(message) {
-    for (const prop in message) {
-      this[prop] = message[prop]
-    }
-    this._message = message
-    this.route = this.content
+module.exports = function Request(message) {
+  message.route = message.content
 
-    // use this to store locals for requests
-    // this will be populated by the variables in the path
-    this.params = new Map()
-  }
+  // use this to store locals for requests
+  // this will be populated by the variables in the path
+  message.params = new Map()
+
+  return message
 }
