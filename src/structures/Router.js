@@ -75,9 +75,8 @@ module.exports = class Router {
 
       if (current.handle instanceof Router) {
         req.route = req.route.slice(current.handle.pathHead.length)
-        console.log('current.pathHead', current.handle.pathHead)
-        console.log('req.route:', req.route)
         current.handle.handle(req, res, next)
+        req.route = `${ current.handle.pathHead }${ req.route }`
       } else {
         current.handle(req, res, next)
       }

@@ -1,6 +1,7 @@
 module.exports = class Request {
   constructor(message) {
     Object.assign(this, message)
+    this._message = message
     this.route = this.content
 
     // use this to store locals for requests
