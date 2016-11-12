@@ -1,6 +1,8 @@
 module.exports = class Request {
   constructor(message) {
-    Object.assign(this, message)
+    for (const prop in message) {
+      this[prop] = message[prop]
+    }
     this._message = message
     this.route = this.content
 
