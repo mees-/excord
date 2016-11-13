@@ -5,7 +5,7 @@ module.exports = class Response {
     this.params = {}
   }
 
-  end(str) {
-    this.destination.sendMessage(str)
+  end() {
+    this.destination.sendMessage(...arguments)
   }
 }
