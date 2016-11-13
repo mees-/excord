@@ -63,6 +63,8 @@ module.exports = class Router {
         try {
           endOfRouter()
         } catch (e) {}
+        return
+
       }
       // loop to next machting middleware
       while (!current.match(req.route).match) {
