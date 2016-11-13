@@ -865,9 +865,9 @@ path-is-inside@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
 
-path-to-matcher:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/path-to-matcher/-/path-to-matcher-1.0.0.tgz#e2c442497562edda80f324587fc71af03c69d18f"
+path-to-matcher@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/path-to-matcher/-/path-to-matcher-1.1.0.tgz#da74ab6ec327b97ac132b5bc58a5b94601c16e2e"
 
 pify@^2.0.0:
   version "2.3.0"

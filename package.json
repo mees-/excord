@@ -1,6 +1,6 @@
 {
   "name": "excord",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An express like framework for creating discord bots",
   "main": "src/index.js",
   "repository": {
@@ -12,7 +12,7 @@
   "dependencies": {
     "debug": "^2.3.0",
     "discord.js": "^10.0.1",
-    "path-to-matcher": "^1.0.0"
+    "path-to-matcher": "1.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",

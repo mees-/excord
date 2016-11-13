@@ -74,8 +74,7 @@ module.exports = class Router {
       }
       // apply req.params from match
       const result = current.match(req.route)
-      for (const param in result.vars) {
-        if (!result.vars.hasOwnProperty(param)) continue
+      for (const param in result.vars) { /* eslint guard-for-in: off */
         req.params.set(param, result.vars[param])
       }
 
