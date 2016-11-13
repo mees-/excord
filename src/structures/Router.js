@@ -6,10 +6,12 @@ const defaultOptions = { pathHead: '', delimiter: ' ' }
 module.exports = class Router {
   constructor(options = {}) {
     this.middleware = []
+    // merge passed options into defaults
     this.options = Object.assign({}, defaultOptions, options)
+    // this.pathHead is defined by a getter below
   }
 
-  use(path, handle, useDelimiter = true) {
+  use(path, handle) {
     if (path instanceof Function || path instanceof Router) {
       handle = path
       path = ''
@@ -31,7 +33,7 @@ module.exports = class Router {
     } else {
       match = compileMatcher(path, { end: false })
     }
-    this.middleware.push({ match, handle, useDelimiter })
+    this.middleware.push({ match, handle })
   }
 
   hit(path, handle) {
