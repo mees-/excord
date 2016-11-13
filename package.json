@@ -20,5 +20,13 @@
     "eslint": "^3.9.1",
     "eslint-config-mees": "^1.1.20",
     "mocha": "^3.1.2"
-  }
+  },
+  "keywords": [
+    "express",
+    "path",
+    "bot",
+    "discord",
+    "framework",
+    "discord.js"
+  ]
 }
