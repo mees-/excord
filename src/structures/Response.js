@@ -1,3 +1,5 @@
+const debug = require('debug')('excord:Response')
+
 module.exports = class Response {
   constructor(message) {
     this.message = message
@@ -6,7 +8,13 @@ module.exports = class Response {
     this.locals = new Map()
   }
 
-  end() {
+  send() {
     this.destination.sendMessage(...arguments)
+  }
+
+  // forward end to send for backwards compatibility
+  end() {
+    debug('response.end is DEPRECATED, use response.send instead')
+    this.send(...arguments)
   }
 }
