@@ -2,7 +2,8 @@ module.exports = class Response {
   constructor(message) {
     this.message = message
     this.destination = message.channel
-    this.params = {}
+    // use this to store user defined locals
+    this.locals = new Map()
   }
 
   end() {
