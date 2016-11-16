@@ -1,6 +1,6 @@
 {
   "name": "excord",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An express like framework for creating discord bots",
   "main": "src/index.js",
   "scripts": {
